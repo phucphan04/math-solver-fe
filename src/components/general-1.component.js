@@ -581,7 +581,7 @@ function Dathuc() {
             style={{
               width: "100%",
               backgroundColor: "#c0cacc",
-              height: "80px",
+              height: "81px",
               borderRadius: "10px",
               color: "#000000",
               fontSize: "20px",
