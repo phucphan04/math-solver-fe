@@ -61,7 +61,7 @@ class App extends Component {
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
-    
+
     if (user) {
       this.setState({
         currentUser: user,
@@ -72,7 +72,7 @@ class App extends Component {
   }
 
   logOut() {
-    AuthService.logout().then(this.setState({current: "home"}));
+    AuthService.logout().then(this.setState({ current: "home" }));
   }
 
 
@@ -82,107 +82,107 @@ class App extends Component {
     const { pathname } = this.props.location;
     return (
 
-        <Layout className="layout">
-          <Menu onClick={this.handleClick} selectedKeys={keyMap[pathname]} mode="horizontal"  style={{padding: "0 150px"}}>
-            <Menu.Item key="home">
-              <Link to={"/"}>
-                MathSolver 
-              </Link>
-            </Menu.Item>
-            {/* <Menu.Item>
+      <Layout className="layout">
+        <Menu onClick={this.handleClick} selectedKeys={keyMap[pathname]} mode="horizontal" style={{ padding: "0 150px" }}>
+          <Menu.Item key="home">
+            <Link to={"/"}>
+              MathSolver
+            </Link>
+          </Menu.Item>
+          {/* <Menu.Item>
               <Link to={"/solve"}>
                 Giải cơ bản
               </Link>
             </Menu.Item> */}
-            <SubMenu key="solve" title="Giải cơ bản">
-              <Menu.Item key="polynomial">
-                <Link to={"/polynomial"}>
-                  Đa thức
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="graph">
-                <Link to={"/graph"}>
-                  Đồ thị
-                </Link>
-              </Menu.Item>
-            </SubMenu>
-            <Menu.Item key="problem">
-              <Link to={"/problem"}>
-                Giải tổng hợp
+          <SubMenu key="solve" title="Giải cơ bản">
+            <Menu.Item key="polynomial">
+              <Link to={"/polynomial"}>
+                Đa thức
               </Link>
             </Menu.Item>
-            {showModeratorBoard && (
-              <Menu.Item key="define">
-                <Link to={"/define"}>
-                  Định nghĩa bài toán
-                </Link>
-              </Menu.Item>
-            )}
-            {showAdminBoard && (
-              <Menu.Item key="monitor">
-                <Link to={"/monitor"}>
-                  Quản lý
-                </Link>
-              </Menu.Item>
-            )}
-            {currentUser ? (
-              <Menu.Item style={{float: 'right'}}>
-                <a href="/" onClick={this.logOut}></a>
-                Đăng xuất
-              </Menu.Item>
-            ) : (
-              <Menu.Item key="login" style={{float: 'right'}}>
-                <Link to={"/login"}>
-                  Đăng nhập
-                </Link>
-              </Menu.Item>
-            )}
-            {currentUser && (
-              <Menu.Item key="profile" style={{float: 'right'}}>
-                <Link to={"/profile"}>
-                  {currentUser.email}
-                </Link>
+            <Menu.Item key="graph">
+              <Link to={"/graph"}>
+                Đồ thị
+              </Link>
+            </Menu.Item>
+          </SubMenu>
+          <Menu.Item key="problem">
+            <Link to={"/problem"}>
+              Giải tổng hợp
+            </Link>
+          </Menu.Item>
+          {showModeratorBoard && (
+            <Menu.Item key="define">
+              <Link to={"/define"}>
+                Định nghĩa bài toán
+              </Link>
+            </Menu.Item>
+          )}
+          {showAdminBoard && (
+            <Menu.Item key="monitor">
+              <Link to={"/monitor"}>
+                Quản lý
+              </Link>
+            </Menu.Item>
+          )}
+          {currentUser ? (
+            <Menu.Item style={{ float: 'right' }}>
+              <a href="/" onClick={this.logOut}></a>
+              Đăng xuất
+            </Menu.Item>
+          ) : (
+            <Menu.Item key="login" style={{ float: 'right' }}>
+              <Link to={"/login"}>
+                Đăng nhập
+              </Link>
+            </Menu.Item>
+          )}
+          {currentUser && (
+            <Menu.Item key="profile" style={{ float: 'right' }}>
+              <Link to={"/profile"}>
+                {currentUser.email}
+              </Link>
 
-              </Menu.Item>
-            )}
-          </Menu>
+            </Menu.Item>
+          )}
+        </Menu>
 
-          <Layout style={{padding: "0 150px"}}>
-            <MathSolver style={{margin: "16px"}}></MathSolver>
-            {pathname=="/login"? 
+        <Layout style={{ padding: "0 150px" }}>
+          <MathSolver style={{ margin: "16px" }}></MathSolver>
+          {pathname == "/login" ?
             <Row style={{}}>
-            <Col span={8}></Col>
-            <Col span={8}>
-              <Switch>
-                <Route exact path="/login" component={Login}/>
-              </Switch>
-            </Col>
-            <Col span={8}></Col>
-              
+              <Col span={8}></Col>
+              <Col span={8}>
+                <Switch>
+                  <Route exact path="/login" component={Login} />
+                </Switch>
+              </Col>
+              <Col span={8}></Col>
+
             </Row>
             :
-            <Content style={{ background: "#fff", padding: "16px"}}>
-                  <Switch>
-                    <Route exact path={"/"} component={Home} />
-                    {/* <Route exact path="/login" component={Login} /> */}
-                    <Route exact path="/profile" component={Profile} />
-                    {/* <Route path="/solve" component={General1} /> */}
-                    <Route path="/solve" component={BoardUser} />
-                    {/* <Route path="/polynomial" component={BoardUser}/> */}
-                    {/* <Route path="/polynomial" component={General1}/> */}
-                    <Route path="/polynomial" component={General2}/>
-                    <Route path="/solve/graph" component={General2}/>
-                    <Route path="/problem" component={General3}/>
-                    <Route path="/mod" component={BoardModerator} />
-                    <Route path="/admin" component={BoardAdmin} />
-                    {/* <Route path="*" component={Home} /> */}
-                  </Switch>
+            <Content style={{ background: "#fff", padding: "16px" }}>
+              <Switch>
+                <Route exact path={"/"} component={Home} />
+                {/* <Route exact path="/login" component={Login} /> */}
+                <Route exact path="/profile" component={Profile} />
+                {/* <Route path="/solve" component={General1} /> */}
+                <Route path="/solve" component={BoardUser} />
+                <Route path="/polynomial" component={BoardUser} />
+                {/* <Route path="/polynomial" component={General1} /> */}
+                {/* <Route path="/polynomial" component={General2}/> */}
+                <Route path="/solve/graph" component={General2} />
+                <Route path="/problem" component={General3} />
+                <Route path="/mod" component={BoardModerator} />
+                <Route path="/admin" component={BoardAdmin} />
+                {/* <Route path="*" component={Home} /> */}
+              </Switch>
             </Content>
-            }
-            
-          </Layout>
-            <Footer style={{ textAlign: 'center' }}>Math</Footer>
-    </Layout>
+          }
+
+        </Layout>
+        <Footer style={{ textAlign: 'center' }}>Math</Footer>
+      </Layout>
     );
   }
 }
